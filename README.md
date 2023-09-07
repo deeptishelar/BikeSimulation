@@ -3,6 +3,7 @@ Prerequisite:
 -The code is downloaded at <your_location>
 
 Steps to run the program:
+From command prompt:
 1. **cd <your_location>/BikeSimulation/BikeSimulation/out/production/BikeSimulation**
 
 2. <your_location>/BikeSimulation/BikeSimulation/out/production/BikeSimulation>**java main/BikeSimulationController**
