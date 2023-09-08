@@ -16,6 +16,7 @@ From command prompt:
 
 6. The program will display the input commands from the file and the output
 
-7. Additionally Junit test cases are also provided. These can be executed in IntelliJ. Open 
+**Additionally** **Junit test cases** are also provided. These can be executed in IntelliJ. 
+Open BikeSimulation/src/test/BikeSimulationTest.java and run as current file. The test cases accept the input command files under out/production/BikeSimulation/resources.
 
 
