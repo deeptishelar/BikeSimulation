@@ -1,15 +1,18 @@
 package main.action;
 
 
-import main.model.Bike;
 import main.model.DIRECTION;
+import main.model.Vehicle;
 
 import java.util.Properties;
 
+/**
+ * Moves the bike forward by one unit in the same direction
+ */
 public class Forward implements Command{
 
     @Override
-    public void act(Bike bike, Properties prop) {
+    public void act(Vehicle bike, Properties prop) {
 
         int maxLimit = Integer.parseInt(prop.getProperty("GRID_MAX"));
         int minLimit = Integer.parseInt(prop.getProperty("GRID_MIN"));

@@ -6,7 +6,20 @@ import main.model.DIRECTION;
 import java.util.Arrays;
 import java.util.Properties;
 
+/**
+ * Validates the following wrt commands
+ * -COMMAND name
+ * -x and y cordinates
+ * -direction
+ * -Grid limits
+ */
 public class CommandValidator {
+    /**
+     * checks if PLACE command is supplied with valid arguments
+     * @param input command
+     * @param prop properties
+     * @return flag is valid
+     */
     private static boolean isValidPlace(String input, Properties prop) {
         boolean isValid;
         String[] args = input.split(",");
@@ -28,7 +41,13 @@ public class CommandValidator {
         }
         return isValid;
     }
-
+    /**
+     * checks if the input command is valid as per the requirements.
+     * Enum command holds all the valid commands
+     * @param line command
+     * @param prop properties
+     * @return flag is valid
+     */
     public static boolean isValidCommand(String line, Properties prop) {
         boolean isValid = false;
         if (line != null && !line.isEmpty()) {
@@ -36,12 +55,11 @@ public class CommandValidator {
             String inputCommand = inputs[0];
             for (COMMANDS cmd : COMMANDS.values()) {
                 if (cmd.name().equals(inputCommand)) {
-                    switch (cmd) {
-                        case PLACE -> {
-                            if (inputs.length == 2)
-                                isValid = isValidPlace(inputs[1], prop);
-                        }
-                        default -> isValid = true;
+                    if (cmd == COMMANDS.PLACE) {
+                        if (inputs.length == 2)
+                            isValid = isValidPlace(inputs[1], prop);
+                    } else {
+                        isValid = true;
                     }
                 }
             }

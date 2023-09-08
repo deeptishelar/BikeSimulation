@@ -1,28 +1,40 @@
 package main;
 
 
-import main.model.Bike;
+import main.model.Vehicle;
 
 import java.io.*;
 import java.util.Properties;
-import java.util.Scanner;
 
-public class BikeSimulationController {
-    static Bike bike;
-    private static final String propFile = "resources/application.properties";
+/**
+ * represents IoC - Inversion of control.
+ * Vehicle can be any vehicle (eg Car) in the future.
+ * The consumer will pass the instance and the controller will place the calls appropriately
+ */
+public class SimulationController {
+    /**
+     * instance variable enables us to inject dependency
+     */
+    Vehicle vehicle;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a file name with path: ");
-        String filename = scanner.nextLine();
-        if (!filename.isEmpty()) {
-            executeCommandFile(filename);
-        } else {
-            System.out.println("Please supply an input file");
-        }
+    /**
+     * Dependency injection via constructor.
+     *
+     * @param vehicle eg bike
+     */
+    public SimulationController(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public static void executeCommandFile(String inputFile) {
+    private static final String propFile = "resources/application.properties";
+
+
+    /**
+     * Parses the input file and executes the commands listed if valid else ignored
+     *
+     * @param inputFile file name
+     */
+    public void executeCommandFile(String inputFile) {
         if (inputFile == null || inputFile.isEmpty()) {
             System.out.println("Please supply an input file");
             return;
@@ -32,7 +44,6 @@ public class BikeSimulationController {
             Properties prop = getProperties();
             br = new BufferedReader(new FileReader(inputFile));
             String line = br.readLine();
-            bike = new Bike();
             System.out.println("INPUT:");
 
             while (line != null) {
@@ -40,13 +51,13 @@ public class BikeSimulationController {
                 if (CommandValidator.isValidCommand(line, prop)) {
                     String[] inputs = line.split(" ");
                     String inputCommand = inputs[0];
-                    bike.setCommand(prop.getProperty(inputCommand));
+                    vehicle.setCommand(prop.getProperty(inputCommand));
                     if (inputCommand.equals(prop.getProperty("FIRST_VALID_MOVE")))
-                        bike.setInitiated(true);
+                        vehicle.setInitiated(true);
                     if (inputs.length == 2)
-                        bike.setValues(inputs[1]);
-                    if (bike.isInitiated())
-                        bike.move(prop);
+                        vehicle.setValues(inputs[1]);
+                    if (vehicle.isInitiated())
+                        vehicle.move(prop);
                 } else {
                     System.out.println("Command " + line + " is ignored");
                 }
@@ -58,29 +69,44 @@ public class BikeSimulationController {
         }
     }
 
+    /**
+     * Used in test cases to use the output in assert checks
+     *
+     * @return String output
+     */
+
     public String gpsReport() {
-        return bike.toString();
+        return vehicle.toString();
     }
 
+    /**
+     * Load the application.properties file
+     *
+     * @return Properties
+     */
     private static Properties getProperties() throws IOException {
         InputStream input = getFileFromResourceAsStream();
         Properties prop = new Properties();
         prop.load(input);
         return prop;
     }
+
+    /**
+     * reads the properties
+     * @return stream to prop file
+     */
     private static InputStream getFileFromResourceAsStream() {
 
         // The class loader that loaded the class
-        ClassLoader classLoader = BikeSimulationController.class.getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(BikeSimulationController.propFile);
+        ClassLoader classLoader = SimulationController.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(SimulationController.propFile);
 
         // the stream holding the file content
         if (inputStream == null) {
-            throw new IllegalArgumentException("file not found! " + BikeSimulationController.propFile);
+            throw new IllegalArgumentException("file not found! " + SimulationController.propFile);
         } else {
             return inputStream;
         }
-
     }
 }
 
