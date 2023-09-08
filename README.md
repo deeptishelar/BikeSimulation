@@ -10,7 +10,7 @@ From command prompt:
 
 3. The program will prompt **Enter a file name with path:**
 
-4. Enter the valid filename with path : eg: /Users/deeptishelar/Documents/bgl/commands.txt
+4. Enter the valid filename with path : eg: /Users/deeptishelar/Documents/bgl/commands.txt (sample files can be found at out/production/BikeSimulation/resources)
 
 5. Hit enter
 
