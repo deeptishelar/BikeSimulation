@@ -4,7 +4,7 @@ Prerequisite:
 
 Steps to run the program:
 From command prompt:
-1. **cd <your_location>/BikeSimulation/BikeSimulation/out/production/BikeSimulation**
+1. **cd <your_location>/BikeSimulation/out/production/BikeSimulation**
 
 2. <your_location>/BikeSimulation/BikeSimulation/out/production/BikeSimulation>**java main/BikeSimulationController**
 
