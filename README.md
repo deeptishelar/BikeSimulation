@@ -14,6 +14,8 @@ From command prompt:
 
 5. Hit enter
 
-6. The program will display the input commands from the file and the output 
+6. The program will display the input commands from the file and the output
+
+7. Additionally Junit test cases are also provided. These can be executed in IntelliJ. Open 
 
 
