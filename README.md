@@ -4,9 +4,9 @@ Prerequisite:
 
 Steps to run the program:
 From command prompt:
-1. **cd <your_location>BikeSimulation/out/production/BikeSimulation**
+1. **cd <your_location>/out/production/BikeSimulation**
 
-2. <your_location>BikeSimulation/out/production/BikeSimulation>**java main.SimulationApp**
+2. <your_location>/out/production/BikeSimulation>**java main/SimulationApp** (or java main.SimulationApp)
 
 3. The program will prompt **Enter a file name with path:**
 
